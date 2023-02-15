@@ -68,7 +68,6 @@ x_1 \\ x_2
 \end{bmatrix} u \\
 \dot {\mathbf x} &= \mathbf A \mathbf x + \mathbf B \mathbf u
 \end{align}
-
 $$
 
 Discretize the system with:

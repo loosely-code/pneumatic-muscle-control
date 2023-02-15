@@ -33,18 +33,6 @@ x(t)\\
 \end{bmatrix}
 $$
 
-```math
-\mathbf{x}(t) = 
-\begin{bmatrix}
-x_1(t)\\
-x_2(t)
-\end{bmatrix} = 
-\begin{bmatrix}
-x(t)\\
-\dot x(t)
-\end{bmatrix}
-```
-
 ODE of the system:
 
 $$
@@ -69,7 +57,7 @@ $$
 \end{bmatrix} = 
 \begin{bmatrix}
 0 & 1 \\ 
-- \frac{K}{M} & -\frac{D}{M}
+-\frac{K}{M} & -\frac{D}{M}
 \end{bmatrix}
 \begin{bmatrix}
 x_1 \\ x_2
@@ -78,26 +66,6 @@ x_1 \\ x_2
 0 \\ \frac{1}{M} 
 \end{bmatrix} u 
 $$
-
-```math
-\dot {\mathbf x} = 
-\begin{bmatrix}
-\dot x \\ \ddot x
-\end{bmatrix} = 
-\begin{bmatrix}
-\dot x_1 \\ \dot x_2
-\end{bmatrix} = 
-\begin{bmatrix}
-0 & 1 \\ 
-- \frac{K}{M} & -\frac{D}{M}
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\ x_2
-\end{bmatrix} + 
-\begin{bmatrix}
-0 \\ \frac{1}{M} 
-\end{bmatrix} u 
-```
 
 which can also be noted as
 
@@ -144,4 +112,16 @@ the ouput equation of the system is
 
 $$
 \mathbf y(k) = \begin{bmatrix} 1 & 0\end{bmatrix} \mathbf x(k) 
+$$
+
+To verify the result, set $M=1$ , $D=2$, $K=3/4$, Given a constant load input $L_0 = 1$, and a initial condition of $x(0) = 0$, the analitical solution of the ODE is 
+
+$$
+ x(s) = \frac {1}{s(s+\frac12)(s+\frac32)} =\frac{4}{3}\cdot \frac{1}{s} -2 \cdot \frac{1}{s+\frac12} + \frac23 \cdot \frac{1}{  s+\frac32}
+$$
+
+thus 
+
+$$
+x(t) = \frac{4}{3} -2 \cdot e^{-\frac12t} +\frac23 \cdot e^{-\frac32t}
 $$

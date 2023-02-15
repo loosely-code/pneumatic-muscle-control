@@ -79,6 +79,26 @@ x_1 \\ x_2
 \end{bmatrix} u 
 $$
 
+```math
+\dot {\mathbf x} = 
+\begin{bmatrix}
+\dot x \\ \ddot x
+\end{bmatrix} = 
+\begin{bmatrix}
+\dot x_1 \\ \dot x_2
+\end{bmatrix} = 
+\begin{bmatrix}
+0 & 1 \\ 
+- \frac{K}{M} & -\frac{D}{M}
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix} + 
+\begin{bmatrix}
+0 \\ \frac{1}{M} 
+\end{bmatrix} u 
+```
+
 which can also be noted as
 
 $$

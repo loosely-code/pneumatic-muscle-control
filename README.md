@@ -33,6 +33,18 @@ x(t)\\
 \end{bmatrix}
 $$
 
+```math
+\mathbf{x}(t) = 
+\begin{bmatrix}
+x_1(t)\\
+x_2(t)
+\end{bmatrix} = 
+\begin{bmatrix}
+x(t)\\
+\dot x(t)
+\end{bmatrix}
+```
+
 ODE of the system:
 
 $$
@@ -95,11 +107,13 @@ $$
 Finally, 
 
 $$
+
 \mathbf x(k+1) = 
 \begin{bmatrix}
 1 & T \\ 
 - \frac{KT}{M} & -\frac{DT}{M}+1
-\end{bmatrix} \mathbf x(k) + 
+\end{bmatrix} 
+\mathbf x(k) + 
 \begin{bmatrix}
 0 \\ \frac{T}{M} 
 \end{bmatrix} \mathbf u

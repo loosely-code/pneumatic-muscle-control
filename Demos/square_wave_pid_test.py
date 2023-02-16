@@ -85,25 +85,25 @@ if __name__ == "__main__":
         T_sample= T_sample
     )
     # define the parameters of the PID controller
-    K_p = 80
-    K_i = 0.5
-    K_d = 80
+    K_p = 20
+    K_i = 0.2
+    K_d = 600
     controller = PID_increment(
         K_p=K_p,
         K_i=K_i,
         K_d=K_d)
     
     # define target signal 
-    from environment_sim.signal_sim import signal_sin
-    Amp =5
-    Period = 5
-    Center = 0
-    signal_target = signal_sin(
-        Amp=Amp,
-        Period=Period,
-        Center=Center,
-        T_sample=T_sample)
+    from environment_sim.signal_sim import signal_square_wave
     
+    signal_target = signal_square_wave(
+        Amp=5,
+        Duty_circle=0.8,
+        Period =10,
+        Base=0.0,
+        T_sample= T_sample
+    )
+
     # define plot_batch
     plot_data_time = np.zeros(N_iter)
     plot_data_pos = np.zeros(N_iter)

@@ -16,6 +16,12 @@ class PID_position(controller_1i1o):
         self.K_d = K_d
         self.integral = 0.0
 
+    def set_param(self,param):
+        self.K_p = param[0]
+        self.K_i = param[1]
+        self.K_d = param[2]
+        self.parameter = np.array([self.K_p,self.K_i,self.K_d])
+
     def reset(self, Initial_state, Initial_target):
         super().reset(Initial_state, Initial_target)
         self.integral = 0.0
@@ -26,6 +32,36 @@ class PID_position(controller_1i1o):
         self.integral += self.error_batch[0]
         self.output_batch[0] = self.K_p * self.error_batch[0] + self.K_i * self.integral + self.K_d * (self.error_batch[0] - self.error_batch[1])
         return self.output_batch[0]
+
+class PID_increment(controller_1i1o):
+    def __init__(self,K_p,K_i,K_d) -> None:
+        super().__init__()
+        self.K_p = K_p
+        self.K_i = K_i
+        self.K_d = K_d
+        self.parameter = np.array([self.K_p,self.K_i,self.K_d])
+        self.T_matrix = np.array(
+            [[1,-1,0],
+            [1,0,0],
+            [1,-2,1]])
+        self.increment = 0
+
+    def set_param(self,param):
+        self.K_p = param[0]
+        self.K_i = param[1]
+        self.K_d = param[2]
+        self.parameter = np.array([self.K_p,self.K_i,self.K_d])
+    
+    def reset(self, Initial_state, Initial_target):
+        super().reset(Initial_state, Initial_target)
+        self.increment = 0.0
+
+    def step(self, target, state):
+        super().step(target, state)
+        increment = self.parameter.dot(self.T_matrix)
+        self.increment = increment.dot(self.error_batch.T)
+        self.output_batch[0] += self.increment
+        return self.output_batch[0] 
         
 if __name__ == "__main__":
 
@@ -52,7 +88,7 @@ if __name__ == "__main__":
     K_p = 80
     K_i = 0.5
     K_d = 80
-    controller = PID_position(
+    controller = PID_increment(
         K_p=K_p,
         K_i=K_i,
         K_d=K_d)

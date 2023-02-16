@@ -40,6 +40,7 @@ class MSD_env:
         self.load = 0.0
         self.state = np.zeros([2,1],dtype=float)
         self.t_global =0
+        return self.state[0,0], self.state[1,0]
 
     def step(self,Load):
         """
@@ -59,7 +60,7 @@ class MSD_env:
         #update t_global
         self.t_global += self.T_sample
 
-        return self.state
+        return self.state[0,0], self.state[1,0]
     
     def get_t_global(self):
         return self.t_global

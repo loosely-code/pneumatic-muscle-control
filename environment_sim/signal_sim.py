@@ -38,8 +38,7 @@ class signal_square_wave:
         self.reset()    
 
     def reset(self):
-        self.out[0] = self.search(0)[0]
-        self.out[1] = self.search(0)[1]
+        self.out = self.search(0)
         self.t_global = 0.0
         return self.out
 
@@ -54,7 +53,8 @@ class signal_square_wave:
             result = self.Amp +self.Base
         else:
             result = self.Base
-        return result, 0
+        result_vec=np.array([result,0])
+        return result_vec
 
 if __name__ == "__main__":
 
